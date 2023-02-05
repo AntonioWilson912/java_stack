@@ -1,0 +1,40 @@
+@charset "ISO-8859-1";
+
+* {
+	font-family: 'Gill Sans MS', sans-serif;
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	width: 50%;
+	margin-left: 80px;
+}
+
+h1 {
+	color: #FFB6C2;
+	width: 100%;
+}
+
+.table-wrapper {
+	border: 10px solid #FFB6C2;
+	width: 100%;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table, th, td {
+	padding: 10px;
+}
+
+th {
+	text-align: left;
+}
+
+tr {
+	border-bottom: 1px solid #ddd;
+}

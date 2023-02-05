@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	
+	margin-top: 40px;
+}
+
+p {
+	color: blue;
+}
