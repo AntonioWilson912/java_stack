@@ -6,13 +6,13 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Omikuji Results</title>
-	<link rel="stylesheet" type="text.css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 	<div class="container">
 		<h1>Here's Your Omijugi!</h1>
 		<div class="box">
-			<p>
+			<p class="text-center">
 				In <c:out value="${number}" /> years, you will live in
 				<c:out value="${city}" /> with <c:out value="${person}" />
 				as your roommate, <c:out value="${hobby }" /> for a living.

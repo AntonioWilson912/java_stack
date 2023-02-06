@@ -36,7 +36,7 @@
 				<label for="niceMessage">Say something nice to someone</label>
 				<textarea name="niceMessage"></textarea>
 			</div>
-			<p><em>Send and show a friend</em>
+			<p class="text-center"><em>Send and show a friend</em>
 			<div class="container-right">
 				<input type="submit" class="btn" value="Send">
 			</div>
