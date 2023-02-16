@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class FormController {
@@ -19,27 +20,18 @@ public class FormController {
 	public String login(
 			@RequestParam(value="email") String email,
 			@RequestParam(value="password") String password,
-			HttpSession session
+			HttpSession session,
+			RedirectAttributes redirectAttributes
 			) {
 		
 		int numErrors = 0;
 		if (email == null || email.length() == 0) {
-			session.setAttribute("emailError", "Missing email!");
+			redirectAttributes.addFlashAttribute("emailError", "Missing email!");
 			numErrors++;
-		}
-		else {
-			if (session.getAttribute("emailError") != null) {
-				session.removeAttribute("emailError");
-			}
 		}
 		if (password == null || password.length() < 8) {
-			session.setAttribute("passwordError", "Password must be at least 8 characters long!");
+			redirectAttributes.addFlashAttribute("passwordError", "Password must be at least 8 characters long!");
 			numErrors++;
-		}
-		else {
-			if (session.getAttribute("passwordError") != null) {
-				session.removeAttribute("passwordError");
-			}
 		}
 		
 		if (numErrors > 0) {

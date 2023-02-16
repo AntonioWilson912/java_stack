@@ -6,15 +6,25 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Demo JSP Form</title>
+	<style type="text/css">
+	body {
+		background-color: black;
+		color: white;
+	}
+	
+	.error {
+		color: red;
+	}
+	</style>
 </head>
 <body>
 	<form method="post" action="/login">
-		<p>
+		<p class="error">
 			<c:out value="${emailError}" />
 		</p>
 		<label>Email:</label>
 		<input type="email" name="email" placeholder="someone@example.com">
-		<p>
+		<p class="error">
 			<c:out value="${passwordError}" />
 		</p>
 		<label>Password:</label>
