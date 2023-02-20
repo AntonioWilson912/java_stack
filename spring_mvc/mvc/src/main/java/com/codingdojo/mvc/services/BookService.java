@@ -50,6 +50,11 @@ public class BookService {
 		return book;
 	}
 	
+	public Book updateBook(Book book) {
+		bookRepository.save(book);
+		return book;
+	}
+	
 	// deletes a book
 	public void deleteBook(Long id) {
 		Book book = findBook(id);

@@ -11,6 +11,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,16 +23,20 @@ public class Book {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	@Size(min=5, max=200)
 	private String title;
 	
+	@NotNull
 	@Size(min=5, max=200)
 	private String description;
 	
-	@Size(min=3, max=40)
+	@NotNull
+	@Size(min=3, max=40, message="Must be at least 3 characters.")
 	private String language;
 	
-	@Min(100)
+	@NotNull(message="Must not be blank.")
+	@Min(value=100, message="Must be at least 100 pages.")
 	private Integer numberOfPages;
 	
 	// This will not allow the createdAt column to be updated after creation

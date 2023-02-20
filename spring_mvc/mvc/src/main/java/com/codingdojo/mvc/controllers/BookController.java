@@ -2,14 +2,19 @@ package com.codingdojo.mvc.controllers;
 
 import java.util.ArrayList;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codingdojo.mvc.models.Book;
 import com.codingdojo.mvc.services.BookService;
@@ -29,20 +34,17 @@ public class BookController {
 	}
 	
 	@GetMapping("/new")
-	public String newBookForm() {
+	public String newBookForm(@ModelAttribute("book") Book book) {
 		return "new.jsp";
 	}
 	
 	@PostMapping("")
-	public String create(@RequestParam("title") String title,
-			@RequestParam("description") String description,
-			@RequestParam("language") String language,
-			@RequestParam("numberOfPages") Integer numberOfPages) {
-		
-		Book book = new Book(title, description, language, numberOfPages);
+	public String create(@Valid @ModelAttribute("book") Book book, BindingResult result) {
+		if (result.hasErrors()) {
+			return "new.jsp";
+		}
 		
 		bookService.createBook(book);
-		
 		return "redirect:/books";
 	}
 	
@@ -53,5 +55,27 @@ public class BookController {
 		model.addAttribute("book", book);
 		
 		return "show.jsp";
+	}
+	
+	@GetMapping("{id}/edit")
+	public String edit(@PathVariable("id") Long id, Model model) {
+		Book book = bookService.findBook(id);
+		model.addAttribute("book", book);
+		return "edit.jsp";
+	}
+	
+	@PutMapping("{id}")
+	public String update(@Valid @ModelAttribute("book") Book book, BindingResult result) {
+		if (result.hasErrors()) {
+			return "edit.jsp";
+		}
+		bookService.updateBook(book);
+		return "redirect:/books";
+	}
+	
+	@DeleteMapping("{id}")
+	public String destroy(@PathVariable("id") Long id) {
+		bookService.deleteBook(id);
+		return "redirect:/books";
 	}
 }
