@@ -68,6 +68,10 @@ h1, h2 {
 	justify-content: space-between;
 }
 
+.justify-start {
+	justify-content: flex-start;
+}
+
 .block {
 	display: block;
 	margin: 10px;
