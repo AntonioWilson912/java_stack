@@ -6730,3 +6730,5 @@ java.io.FileNotFoundException: C:\Users\rhoss\.m2\repository\com\fasterxml\jacks
 2023-02-26 20:47:39,054 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2023-02-26 20:47:39,054 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2023-02-26 20:47:39,057 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2023-02-26 20:47:39,057 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2023-02-26 20:47:39,057 [Worker-497: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\rhoss\Documents\Coding Dojo\java_stack\spring_mvc\studentRoster\src\test\resources
