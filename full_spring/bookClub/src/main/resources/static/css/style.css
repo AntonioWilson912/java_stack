@@ -14,6 +14,14 @@
 	padding: 100px;
 }
 
+.mt-20 {
+	margin-top: 20px;
+}
+
+.mr-10 {
+	margin-right: 10px;
+}
+
 .container {
 	margin: 20px;
 }
@@ -25,8 +33,58 @@
 	gap: 50px;
 }
 
+.align-start {
+	align-items: flex-start;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+table, .table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.table th, .table td {
+	border: 1px solid #ddd;
+	padding: 10px;
+}
+
+.table.table-striped tr:nth-child(even) {
+	background-color: #F2F2F2;
+}
+
+.table.table-striped tr:hover {
+	background-color: #DDD;
+}
+
+.table th {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	text-align: center;
+	background-color: #63BFB2;
+}
+
 .col {
 	flex: 1;
+}
+
+.col-2 {
+	flex: 2;
+}
+
+.col-3 {
+	flex: 3;
+}
+
+blockquote {
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	margin-left: 50px;
+	font-style: italic;
+	font-size: 1.25rem;
+	padding: 20px;
 }
 
 .form {
@@ -34,6 +92,10 @@
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+}
+
+.italic {
+	font-style: italic;
 }
 
 .form-group {
@@ -47,6 +109,10 @@
 	color: rebeccapurple;
 }
 
+.text-green {
+	color: #3EB64B;
+}
+
 .text-danger {
 	color: red;
 }
@@ -56,10 +122,29 @@
 	justify-content: flex-end;
 }
 
+.left {
+	justify-content: flex-start;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
 .btn {
 	padding: 10px 20px;
 	background-color: #395EAC;
 	color: white;
 	border: 1px solid black;
 	box-shadow: 5px 5px 1px black;
+	text-decoration: none;
+	font-size: 1rem;
+	cursor: default;
+}
+
+.btn-green {
+	background-color: #3EB64B;
+}
+
+.btn-danger {
+	background-color: red;
 }
