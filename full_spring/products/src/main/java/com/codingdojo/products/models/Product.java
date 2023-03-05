@@ -44,6 +44,15 @@ public class Product {
 	public Product() {
 		// TODO Auto-generated constructor stub
 	}
+	
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
 
 	public Long getId() {
 		return id;

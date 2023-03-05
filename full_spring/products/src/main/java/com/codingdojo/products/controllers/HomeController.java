@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codingdojo.products.models.Category;
 import com.codingdojo.products.models.Product;
@@ -55,12 +57,29 @@ public class HomeController {
 	
 	@GetMapping("/products/{productId}")
 	public String showProduct(@PathVariable("productId") Long productId, Model model) {
-		model.addAttribute("product", productService.findProduct(productId));
+		Product product = productService.findProduct(productId);
+		model.addAttribute("product", product);
+		model.addAttribute("notInCategories", categoryService.allCategoriesNotForProduct(product));
 		return "showProduct.jsp";
 	}
 	
+	@PutMapping("/products/{productId}")
+	public String addCategoryToProduct(@PathVariable("productId") Long productId, @RequestParam("categoryId") Long categoryId) {
+		productService.addCategoryToProduct(productId, categoryService.findCategory(categoryId));
+		return "redirect:/";
+	}
+	
 	@GetMapping("/categories/{categoryId}")
-	public String showCategory(@PathVariable("categoryId") Long categoryId) {
+	public String showCategory(@PathVariable("categoryId") Long categoryId, Model model) {
+		Category category = categoryService.findCategory(categoryId);
+		model.addAttribute("category", category);
+		model.addAttribute("productsNotIn", productService.allProductsNotInCategory(category));
 		return "showCategory.jsp";
+	}
+	
+	@PutMapping("/categories/{categoryId}")
+	public String addProductToCategory(@PathVariable("categoryId") Long categoryId, @RequestParam("productId") Long productId) {
+		categoryService.addProductToCategory(categoryId, productService.findProduct(productId));
+		return "redirect:/";
 	}
 }
