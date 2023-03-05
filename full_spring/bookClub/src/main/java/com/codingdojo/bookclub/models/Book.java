@@ -41,23 +41,15 @@ public class Book {
 	private Date updatedAt;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="user_id")
-	private User user;
+	@JoinColumn(name="owner_id")
+	private User owner;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="borrower_id", nullable = true)
+	private User borrower;
 	
 	public Book() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public Book(Long id, @NotEmpty(message = "Title must not be blank.") String title,
-			@NotEmpty(message = "Author must not be blank.") String author, String thoughts, Date createdAt, Date updatedAt, User user) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.author = author;
-		this.thoughts = thoughts;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-		this.user = user;
 	}
 
 	public Long getId() {
@@ -107,15 +99,23 @@ public class Book {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 	
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
+	public User getBorrower() {
+		return borrower;
+	}
+
+	public void setBorrower(User borrower) {
+		this.borrower = borrower;
+	}
+
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();

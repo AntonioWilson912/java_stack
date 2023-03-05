@@ -17,27 +17,34 @@
 			<a href="/books">back to the shelves</a>
 		</div>
 		<div class="row mt-20">
-				<form:form action="/books/${book.id}/edit" method="post" modelAttribute="book" cssClass="form col-3">
-					<input type="hidden" name="_method" value="put">
-					<form:errors path="title" cssClass="text-danger" />
-					<div class="form-group">
-						<form:label path="title" cssClass="col">Title</form:label>
-						<form:input path="title" cssClass="col-3" />
-					</div>
-					<form:errors path="author" cssClass="text-danger" />
-					<div class="form-group">
-						<form:label path="author" cssClass="col">Author</form:label>
-						<form:input path="author" cssClass="col-3"/>
-					</div>
-					<div class="form-group">
-						<form:label path="thoughts" cssClass="col">Thoughts</form:label>
-						<form:textarea path="thoughts" cssClass="col-3"/>
-					</div>
-					<div class="right">
-						<input type="submit" value="Submit" class="btn">
-					</div>
-				</form:form>
-				<div class="col-2"></div>
-			</div>
+			<form:form action="/books/${book.id}/edit" method="post"
+				modelAttribute="book" cssClass="form col-3">
+				<input type="hidden" name="_method" value="put">
+				<form:errors path="title" cssClass="text-danger" />
+				<div class="form-group">
+					<form:label path="title" cssClass="col">Title</form:label>
+					<form:input path="title" cssClass="col-3" />
+				</div>
+				<form:errors path="author" cssClass="text-danger" />
+				<div class="form-group">
+					<form:label path="author" cssClass="col">Author</form:label>
+					<form:input path="author" cssClass="col-3" />
+				</div>
+				<div class="form-group">
+					<form:label path="thoughts" cssClass="col">Thoughts</form:label>
+					<form:textarea path="thoughts" cssClass="col-3" />
+				</div>
+				<div class="right">
+					<input type="submit" value="Submit" class="btn">
+				</div>
+			</form:form>
+			<div class="col-2"></div>
+		</div>
+		<div class="row left mt-20">
+			<form action="/books/${book.id}" method="post">
+				<input type="hidden" name="_method" value="delete">
+				<input type="submit" value="delete" class="btn btn-danger pointer">
+			</form>
+		</div>
 	</div>
 </body>

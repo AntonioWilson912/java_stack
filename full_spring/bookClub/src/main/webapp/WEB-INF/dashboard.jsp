@@ -48,7 +48,7 @@
 									<td><c:out value="${thisBook.id}" /></td>
 									<td><a href="/books/${thisBook.id}"><c:out value="${thisBook.title}" /></a></td>
 									<td><c:out value="${thisBook.author}" /></td>
-									<td><c:out value="${thisBook.user.name}" /></td>
+									<td><c:out value="${thisBook.owner.name}" /></td>
 								</tr>
 							</c:forEach>
 						</c:otherwise>
@@ -56,6 +56,8 @@
 				</tbody>
 			</table>
 		</div>
-
+		<div class="mt-20">
+			<a href="/bookmarket">Check out the book market and borrow some books!</a>
+		</div>
 	</div>
 </body>

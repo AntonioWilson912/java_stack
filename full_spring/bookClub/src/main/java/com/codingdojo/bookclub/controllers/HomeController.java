@@ -108,7 +108,7 @@ public class HomeController {
 		}
 		
 		// no errors
-		book.setUser(userService.findUser((Long) session.getAttribute("userId")));
+		book.setOwner(userService.findUser((Long) session.getAttribute("userId")));
 		bookService.createBook(book);
 		
 		return "redirect:/books";
@@ -138,7 +138,11 @@ public class HomeController {
 			return "redirect:/";
 		}
 		
-		model.addAttribute("book", bookService.findBook(id));
+		Book book = bookService.findBook(id);
+		model.addAttribute("book", book);
+		if (book.getBorrower() != null) {
+			session.setAttribute("borrowerId", book.getBorrower().getId());
+		}
 		
 		return "editBook.jsp";
 	}
@@ -150,9 +154,35 @@ public class HomeController {
 		}
 		
 		book.setId(id);
-		book.setUser(userService.findUser((Long) session.getAttribute("userId")));
+		book.setOwner(userService.findUser((Long) session.getAttribute("userId")));
+		if (session.getAttribute("borrowerId") != null) {
+			book.setBorrower(userService.findUser((Long) session.getAttribute("borrowerId")));
+		}
 		bookService.updateBook(book);
 		
 		return "redirect:/books";
+	}
+	
+	@GetMapping("/bookmarket")
+	public String bookmarket(Model model, HttpSession session) {
+		if (session.getAttribute("userId") == null) {
+			return "redirect:/";
+		}
+		
+		model.addAttribute("user", userService.findUser((Long) session.getAttribute("userId")));
+		model.addAttribute("availableBooks", bookService.findAllAvailableBooks());
+		return "bookmarket.jsp";
+	}
+	
+	@GetMapping("/bookmarket/borrow/{bookId}")
+	public String borrowBook(@PathVariable("bookId") Long bookId, HttpSession session) {
+		bookService.borrowBook(bookId, userService.findUser((Long) session.getAttribute("userId")));
+		return "redirect:/bookmarket";
+	}
+	
+	@GetMapping("/bookmarket/return/{bookId}")
+	public String returnBook(@PathVariable("bookId") Long bookId, HttpSession session) {
+		bookService.returnBook(bookId);
+		return "redirect:/bookmarket";
 	}
 }

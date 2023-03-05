@@ -45,8 +45,11 @@ public class User {
 	@Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
 	private String confirm;
 	
-	@OneToMany(mappedBy="user", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="owner", fetch=FetchType.LAZY)
 	private List<Book> books;
+	
+	@OneToMany(mappedBy="borrower", fetch=FetchType.LAZY)
+	private List<Book> borrowedBooks;
 	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -58,29 +61,6 @@ public class User {
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public User(Long id, String name, String email, String password, List<Book> books) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.books = books;
-	}
-	
-
-	public User(Long id, String name, String email, String password, String confirm, List<Book> books) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.confirm = confirm;
-		this.books = books;
-	}
-
-
-
 
 	public Long getId() {
 		return id;
@@ -128,6 +108,14 @@ public class User {
 
 	public void setBooks(List<Book> books) {
 		this.books = books;
+	}
+
+	public List<Book> getBorrowedBooks() {
+		return borrowedBooks;
+	}
+
+	public void setBorrowedBooks(List<Book> borrowedBooks) {
+		this.borrowedBooks = borrowedBooks;
 	}
 
 	public Date getCreatedAt() {

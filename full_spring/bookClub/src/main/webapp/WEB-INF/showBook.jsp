@@ -19,13 +19,13 @@
 		<div class="row mt-20">
 			<div class="col-3">
 				<c:choose>
-					<c:when test="${book.user.id eq user.id}">
+					<c:when test="${book.owner.id eq user.id}">
 						<h4><span class="text-danger">You</span> read <span class="text-purple"><c:out value="${book.title}" /></span> by <span class="text-green"><c:out value="${book.author}" /></span>.</h4>
 						<h4 class="mt-20">Here are your thoughts:</h4>
 					</c:when>
 					<c:otherwise>
-						<h4><span class="text-danger"><c:out value="${book.user.name}" /></span> read <span class="text-purple"><c:out value="${book.title}" /></span> by <span class="text-green"><c:out value="${book.author}" /></span>.</h4>
-						<h4 class="mt-20">Here are <c:out value="${book.user.name}" />'s thoughts:</h4>
+						<h4><span class="text-danger"><c:out value="${book.owner.name}" /></span> read <span class="text-purple"><c:out value="${book.title}" /></span> by <span class="text-green"><c:out value="${book.author}" /></span>.</h4>
+						<h4 class="mt-20">Here are <c:out value="${book.owner.name}" />'s thoughts:</h4>
 					</c:otherwise>
 				</c:choose>
 				<blockquote class="mt-20">
@@ -38,7 +38,7 @@
 						</c:otherwise>
 					</c:choose>
 				</blockquote>
-				<c:if test="${book.user.id eq user.id}">
+				<c:if test="${book.owner.id eq user.id}">
 					<div class="right mt-20">
 						<a href="/books/${book.id}/edit" class="btn btn-green mr-10 pointer">edit</a>
 						<form action="/books/${book.id}" method="post">
